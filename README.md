@@ -26,7 +26,7 @@ En este repositorio vas a encontrar un archivo csv que es el dataframe con que v
 
 Puntos 4) y 5) son los tuyos 😉 
 
-## Scripts de python y archivos csv
+## Scripts de python y archivo csv
 
 El mas importante para ti y los clasificadores seria clasificadores.py. El resto los he subido por si quieres tener mas contexto de donde saco los tensores que te pasare para los clasificadores. Te explico brevemente a continuacion: 
 
@@ -35,4 +35,17 @@ El mas importante para ti y los clasificadores seria clasificadores.py. El resto
 -  bayesianopt.py : pequeño intento de un optimizador bayesiano sin usar la libreria optuna porque me daba errores en el servidor. En este caso te recomendaria usar la libreria optuna porque no me funciono correctamente. Te lo dejo por si te sirviera de algo. 
 -  gridsearch.py : XGboost con un gridsearch para buscar mejores hiperparametros. Tampoco fue muy eficaz por como es el método en si de lento. 
 
+- df_filter.csv: dataframe donde viene toda la informacion. 
 
+## Propuestas de clasificadores
+
+Esto es orientativo para nada hay que hacerlos todos y se pueden proponer otros que veamos mejores o mas interesantes. Seguramente para una clasifacion binaria muchos no sean lo mejores, iremos analizandolo. 
+
+- XGBoost
+- LightBoost
+- CatBoost
+- AdaBoost
+- Logistic Regression
+- SVM
+- Red neuronal de 2 salidas
+- Random forest 
