@@ -18,8 +18,8 @@ No pretendo que te leas los papers al detalle porque contiene mucha informacion 
 1) Vamos a usar el modelo preentrenado XLSR-wav2vec2 que son modelos de lenguaje preentrenados con gran cantidad de datos de habla multilingüe por lo que es capaz de aprender patrones en el habla, es decir, lingüisticos entre diferentes idiomas y con ellos mejorar la calidad de la transcripcion. En concreto, vamos a usar un modelo subido a https://huggingface.co/ (Hugging Face es una comunidad donde la gente pueden compartir modelos del lenguaje preentreados y tambien proporcionan apis para poder trabajar con cierto algoritmos o redes neuronales). Como los audios de Alzheimer son en ingles estoy usando esta inferencia: https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-english
 2) Despues se "finetuena" con los datos de Alzheimer
 3) Se selecciona previamente de que capa intermedia vamos a extraer los tensores para luego aplicarlos al clasificador. 
-**4) Aplicar diferentes algoritmos de clasificacion para pacientes con Alzheimer y control 
-**5) Optimizadores de hiperparametros 
+**4) Aplicar diferentes algoritmos de clasificacion para pacientes con Alzheimer y control **
+**5) Optimizadores de hiperparametros **
 
 ## Carperta scripts
 
