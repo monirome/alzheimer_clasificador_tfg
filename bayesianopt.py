@@ -14,6 +14,12 @@ from xgboost import XGBClassifier
 from sklearn.metrics import classification_report
 from sklearn.model_selection import GridSearchCV
 
+from bayes_opt import BayesianOptimization
+import xgboost as xgb
+from sklearn.metrics import mean_squared_error
+from xgboost import XGBClassifier
+
+
 #####################--READ_DATA--##################################################
 
 path_df = "/home/u917/PROJECT/alzheimer/datos/df_filter.csv"
@@ -49,15 +55,8 @@ enc = LabelEncoder()
 y_train_trans = enc.fit_transform(y_train)
 y_test_trans = enc.fit_transform(y_test)
 
-from bayes_opt import BayesianOptimization
-import xgboost as xgb
-from sklearn.metrics import mean_squared_error
-
-#Converting the dataframe into XGBoost’s Dmatrix object
 dtrain = xgb.DMatrix(X_train, label=y_train_trans)
 
-#Bayesian Optimization function for xgboost
-#specify the parameters you want to tune as keyword arguments
 def bo_tune_xgb(max_depth, gamma ,learning_rate):
     params = {'max_depth': int(max_depth),
               'gamma': gamma,
@@ -70,33 +69,25 @@ def bo_tune_xgb(max_depth, gamma ,learning_rate):
     #Return the negative RMSE
     return -1.0 * cv_result['test-rmse-mean'].iloc[-1]
 
-#Invoking the Bayesian Optimizer with the specified parameters to tune
 xgb_bo = BayesianOptimization(bo_tune_xgb, {'max_depth': (3, 10),
                                              'gamma': (0, 1),
                                              'learning_rate':(0,1)
                                             })
 
-#performing Bayesian optimization for 5 iterations with 8 steps of random exploration with an #acquisition function of expected improvement
 xgb_bo.maximize(n_iter=8, init_points=8, acq='ei')
 
 
 from sklearn.metrics import classification_report
 
-#Extracting the best parameters
 params = xgb_bo.max['params']
 print(params)
 
-#Converting the max_depth and n_estimator values from float to int
 params['max_depth']= int(params['max_depth'])
 
-#Initialize an XGBClassifier with the tuned parameters and fit the training data
-from xgboost import XGBClassifier
 classifier2 = XGBClassifier(**params).fit(X_train, y_train_trans)
 
-#predicting for training set
 y_pred = classifier2.predict(X_test)
 
-#Looking at the classification report
 def metricas(objetivo, prediccion):
     matriz_conf = confusion_matrix(objetivo, prediccion)
     score = accuracy_score(objetivo, prediccion)
