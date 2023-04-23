@@ -12,8 +12,17 @@ Vas a encontrar dos papers sobre el algoritmo wav2vec2 y modelo preentrenado XLS
 
 No pretendo que te leas los papers al detalle porque contiene mucha informacion sobre todo tecnica la idea es que a partir de estos busques informacion y vayas preguntando dudas que te surjan, como por ejemplo que es un algoritmo semi-supervisado, que quiere decir que esta preentrenado, que es son las transformers... lo dicho tampoco hace falta profundizar tecnicamente mucho en esto ya que el foco del estudio que son los clasificadores. 
 
-En este caso no vamos a "finetunear" el modelo, ya que tardariamos mucho y no es el fin ahora mismo, por lo que vamos a conger una inferencia subida a https://huggingface.co/ (Hugging Face es una comunidad donde la gente pueden compartir modelos del lenguaje preentreados y tambien proporcionan apis para poder trabajar con cierto algoritmos o redes neuronales). Vamos a trabajar con el modelo preentrenado XLSR-wav2vec2 que son modelos de lenguaje preentrenados con gran cantidad de datos de habla multilingüe por lo que es capaz de aprender patrones en el habla, es decir, lingüisticos entre diferentes idiomas y con ellos mejorar la calidad de la transcripcion. 
 
-Como los audios de Alzheimer son en ingles estoy usando esta inferencia: https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-english
+## Pipeline
 
-## Carperta Papers
+1) Vamos a usar el modelo preentrenado XLSR-wav2vec2 que son modelos de lenguaje preentrenados con gran cantidad de datos de habla multilingüe por lo que es capaz de aprender patrones en el habla, es decir, lingüisticos entre diferentes idiomas y con ellos mejorar la calidad de la transcripcion. En concreto, vamos a usar un modelo subido a https://huggingface.co/ (Hugging Face es una comunidad donde la gente pueden compartir modelos del lenguaje preentreados y tambien proporcionan apis para poder trabajar con cierto algoritmos o redes neuronales). Como los audios de Alzheimer son en ingles estoy usando esta inferencia: https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-english
+2) Despues se "finetuena" con los datos de Alzheimer
+3) Se selecciona previamente de que capa intermedia vamos a extraer los tensores para luego aplicarlos al clasificador. 
+**4) Aplicar diferentes algoritmos de clasificacion para pacientes con Alzheimer y control 
+**5) Optimizadores de hiperparametros 
+
+## Carperta scripts
+
+El mas importante para ti y los clasificadores seria clasificadores.py. El resto los he subido por si quieres tener mas contexto de donde saco los tensores que te pasare para los clasificadores. Te explico brevemente a continuacion: 
+
+-  inferencia.py : hago una llamda al modelo subido a huggingface que comente anteriormente. 
