@@ -27,9 +27,6 @@ from xgboost import XGBClassifier
 from sklearn.metrics import classification_report
 
 ##################################################################################
-import wandb
-wandb.init()
-#####################--READ_DATA--##################################################
 
 path_df = "/home/u917/PROJECT/alzheimer/datos/df_filter.csv"
 path_audio = "/home/u917/PROJECT/alzheimer/datos/audios/"
