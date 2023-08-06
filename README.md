@@ -49,4 +49,8 @@ Esto es orientativo, para nada hay que hacerlos todos y se pueden proponer otros
 - Logistic Regression
 - SVM
 - Red neuronal de 2 salidas
-- Random forest 
+- Random forest
+
+## Nuevas ideas
+
+Añadir al codigo estudio de hiperparametros tecnicas como: SHAP o LIME 
